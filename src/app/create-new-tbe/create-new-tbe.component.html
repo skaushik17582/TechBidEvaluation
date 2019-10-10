@@ -1,0 +1,39 @@
+<div id="form-demo">        
+    <br>
+    <div class="widget-container">
+        <div>Select Project:</div>
+        <dx-select-box #project
+            displayExpr="Title"
+            [(dataSource)]="projects"
+            [value]=null></dx-select-box>
+        <br>
+        <div>Select Discipline:</div>
+        <dx-select-box #discipline
+            displayExpr="Name"
+            [(dataSource)]="disciplines"
+            [value]=null></dx-select-box>
+        <br>
+        <div>Select Package:</div>
+        <dx-select-box #package
+            displayExpr="Name"
+            [(dataSource)]="packages"
+            [value]=null
+            (onValueChanged)="onPackageChanged($event)"></dx-select-box>
+        <br>
+        <div>Choose Reference Project:</div>
+        <dx-select-box #refproject
+            displayExpr="Title"
+            [(dataSource)]="refprojects"
+            [value]=null
+            visible=false></dx-select-box>
+        <br>
+        <br>
+        <dx-button
+            stylingMode="outlined"
+            text="Continue..."
+            type="default"
+            [width]="120"
+            (onClick)="continue()">
+        </dx-button>
+    </div>
+</div>
