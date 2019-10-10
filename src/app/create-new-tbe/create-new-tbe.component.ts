@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-new-tbe.component.css']
 })
 export class CreateNewTBEComponent implements OnInit, AfterViewInit{  
-  selectedPackageId: number;
-
+  
   projects: Project[];
   disciplines: Discipline[]; 
   packages: Package[]; 
   refprojects: Project[];
   service: Service;
+  refProjectId: number;
 
   @ViewChild("refproject", {static: false}) refProjSelectBox: DxSelectBoxComponent;
 
@@ -34,13 +34,19 @@ export class CreateNewTBEComponent implements OnInit, AfterViewInit{
       //this.refProjSelectBox.visible = false;
     }
   
-    onPackageChanged (e) {  
-      this.refprojects = this.service.getRefProjects(e.value.Id);
+    onPackageChanged (e) { 
+      this.refprojects = this.service.getRefProjects(e.value.ID);
       this.refProjSelectBox.visible = true;
-  }
+    }
 
-  continue()
-  {
-    this.router.navigate(['/refproject']);
-  }
+    onRefProjSelected (e) { 
+      alert(e.value.ID);
+      this.refProjectId = e.value.ID;
+    }
+
+    setBidders()
+    {
+      alert('set bidder- ' + this.refProjectId);
+      this.router.navigate(['/refproject'], { queryParams: { refProjId: this.refProjectId }});
+    }
 }

@@ -25,7 +25,8 @@
             displayExpr="Title"
             [(dataSource)]="refprojects"
             [value]=null
-            visible=false></dx-select-box>
+            visible=false
+            (onValueChanged)="onRefProjSelected($event)"></dx-select-box>
         <br>
         <br>
         <dx-button
@@ -33,7 +34,7 @@
             text="Continue..."
             type="default"
             [width]="120"
-            (onClick)="continue()">
+            (onClick)="setBidders()">
         </dx-button>
     </div>
 </div>
