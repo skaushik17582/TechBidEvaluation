@@ -3,8 +3,8 @@
     <div class="widget-container">
         <div>Select Project:</div>
         <dx-select-box #project
-            displayExpr="Title"
-            [(dataSource)]="projects"
+            displayExpr="projectNumber"
+            [(dataSource)]="projectArr"
             [value]=null></dx-select-box>
         <br>
         <div>Select Discipline:</div>

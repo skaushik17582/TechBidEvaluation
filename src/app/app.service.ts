@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 
 export class Project {
     ID: number;
@@ -63,8 +65,20 @@ let refprojects: Project[] = [{
 
 @Injectable()
 export class Service {
+    url: string;
+
+    constructor(private http:HttpClient) { 
+      this.url='http://10.1.170.167:3200/api/project/all';
+    }
+
+    getProjectData()
+    {
+      return this.http.get(this.url);
+    }
+
     getProjects() : Project[] {
-        return projects;
+      
+         return projects;
     }
 
     getDisciplines() : Discipline[] {
