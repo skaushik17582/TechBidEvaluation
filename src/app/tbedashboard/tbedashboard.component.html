@@ -1,0 +1,16 @@
+<div>
+    <dx-data-grid
+        id="gridContainer"
+        [dataSource]="customers"
+        [columns]="['CompanyName', 'City', 'State', 'Phone', 'Fax']"
+        [showBorders]="true">
+    </dx-data-grid>
+    <br>
+    <br>
+    <dx-button
+        stylingMode="outlined"
+        text="Create New TBE"
+        type="default"
+        (onClick)="createNewTBE()">
+    </dx-button>
+</div>
