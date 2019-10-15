@@ -11,49 +11,6 @@ export class Project {
     ClientID: number;
 }
 
-export class Discipline {
-    ID: number;
-    Name: string;
-  }
-
-  export class Package 
-  {
-    ID: number;
-    Name: string;
-    Title: string;
-  }
-
-let projects: Project[] = [{
-    ID: 1,
-    Number: '6071',
-    Title: 'QP BH Ph 1',
-    ClientProjectNumber: '4004',
-    ContractNumber: 'GC0031331',
-    ClientID: 1
-}, {
-    ID: 2,
-    Number: '1234',
-    Title: 'Another Project',
-    ClientProjectNumber: '4321',
-    ContractNumber: 'Any Random Number',
-    ClientID: 1
-}];
-
-let disciplines: Discipline[] = [
-    { ID: 1, Name: 'Process' },
-    { ID: 2, Name: 'Piping' },
-    { ID: 3, Name: 'Instrumentation' },
-    { ID: 4, Name: 'Electrical' },
-    { ID: 5, Name: 'Structural' },
-    { ID: 6, Name: 'Pipelines' }
-  ];
-
-let packages: Package[] = [
-    { ID: 1, Name: 'Subsea Flange', Title: 'Subsea Flange' },
-    { ID: 2, Name: 'Cladding', Title: 'Cladding' },
-    { ID: 2, Name: 'Switchgear', Title: 'HV Switchgear' }
-  ]; 
-
 let refprojects: Project[] = [{
     ID: 1,
     Number: '6071',
@@ -68,28 +25,26 @@ export class Service {
     url: string;
 
     constructor(private http:HttpClient) { 
-      this.url='http://10.1.170.167:3200/api/project/all';
+      this.url='http://10.1.170.167:3200/api';
     }
 
-    getProjectData()
+    getProjects()
     {
-      return this.http.get(this.url);
+      return this.http.get(this.url + '/project/all');
     }
 
-    getProjects() : Project[] {
-      
-         return projects;
+    getDisciplines()
+    {
+      return this.http.get(this.url + '/discipline/all');
     }
 
-    getDisciplines() : Discipline[] {
-        return disciplines;
+    getPackages()
+    {
+      return this.http.get(this.url + '/package/all');
     }
 
-    getPackages() : Package[] {
-        return packages;
-    }
-
-    getRefProjects(packageId) : Project[] {
-        return refprojects;
+    getRefProjects(packageId)
+    {
+      return this.http.get(this.url + '/package/' + packageId + '/projects');
     }
 }
