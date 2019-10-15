@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateNewTBEComponent } from './create-new-tbe/create-new-tbe.component';
 import { RefProjBiddersComponent } from './ref-proj-bidders/ref-proj-bidders.component';
-
 import { 
   DxButtonModule,
   DxCheckBoxModule,
@@ -13,10 +12,13 @@ import {
   DxNumberBoxModule,
 	DxTextAreaModule,
 	DxDateBoxModule,
-	DxFormModule } from 'devextreme-angular';
+  DxFormModule,
+  DxDataGridModule,
+  DxBulletModule,
+  DxTemplateModule } from 'devextreme-angular';
 import { TbeDetailsComponent } from './tbe-details/tbe-details.component';
 import { TbedashboardComponent } from './tbedashboard/tbedashboard.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -37,7 +39,11 @@ import { TbedashboardComponent } from './tbedashboard/tbedashboard.component';
 		DxTextAreaModule,
 		DxDateBoxModule,
     DxFormModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DxDataGridModule,
+    DxTemplateModule,
+    DxBulletModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

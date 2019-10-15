@@ -1,7 +1,9 @@
 import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { DxSelectBoxComponent } from "devextreme-angular";
-import { Project, Discipline, Package, Service } from '../app.service';
+import { Service } from '../app.service';
 import { Router } from '@angular/router';
+import CustomStore from "devextreme/data/custom_store";
+import { createStore } from "devextreme-aspnet-data-nojquery";
 
 @Component({
   selector: 'create-tbe',
@@ -9,44 +11,55 @@ import { Router } from '@angular/router';
   templateUrl: './create-new-tbe.component.html',
   styleUrls: ['./create-new-tbe.component.css']
 })
-export class CreateNewTBEComponent implements OnInit, AfterViewInit{  
+export class CreateNewTBEComponent implements OnInit{  
   
-  projects: Project[];
-  disciplines: Discipline[]; 
-  packages: Package[]; 
-  refprojects: Project[];
+  projects: any;
+  disciplines: any; 
+  packages: any; 
+  refprojects: any;
   service: Service;
   refProjectId: number;
+  store: CustomStore;
 
   @ViewChild("refproject", {static: false}) refProjSelectBox: DxSelectBoxComponent;
 
     constructor( service: Service, public router: Router ) {
         this.service = service;
-        this.projects = service.getProjects();
-        this.disciplines = service.getDisciplines();
-        this.packages = service.getPackages();
     }
 
     ngOnInit() {
+
+      this.service.getProjects().subscribe((res:any) => {
+        console.log(res.payload.data);
+        this.projects = res.payload.data;
+      });
+
+      this.service.getDisciplines().subscribe((res:any) => {
+        console.log(res.payload.data);
+        this.disciplines = res.payload.data;
+      });
+
+      this.service.getPackages().subscribe((res:any) => {
+        console.log(res.payload.data);
+        this.packages = res.payload.data;
+      });      
     }
-  
-    ngAfterViewInit() { 
-      //this.refProjSelectBox.visible = false;
-    }
-  
+
     onPackageChanged (e) { 
-      this.refprojects = this.service.getRefProjects(e.value.ID);
+      this.service.getRefProjects(e.value.id).subscribe((res:any) => {
+        alert(e.value.id);
+        console.log(res.payload.data);
+        this.refprojects = res.payload.data;
+      });
       this.refProjSelectBox.visible = true;
     }
 
     onRefProjSelected (e) { 
-      alert(e.value.ID);
       this.refProjectId = e.value.ID;
     }
 
     setBidders()
     {
-      alert('set bidder- ' + this.refProjectId);
       this.router.navigate(['/refproject'], { queryParams: { refProjId: this.refProjectId }});
     }
 }

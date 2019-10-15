@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 
 export class Project {
     ID: number;
@@ -8,49 +10,6 @@ export class Project {
     ContractNumber: string;
     ClientID: number;
 }
-
-export class Discipline {
-    ID: number;
-    Name: string;
-  }
-
-  export class Package 
-  {
-    ID: number;
-    Name: string;
-    Title: string;
-  }
-
-let projects: Project[] = [{
-    ID: 1,
-    Number: '6071',
-    Title: 'QP BH Ph 1',
-    ClientProjectNumber: '4004',
-    ContractNumber: 'GC0031331',
-    ClientID: 1
-}, {
-    ID: 2,
-    Number: '1234',
-    Title: 'Another Project',
-    ClientProjectNumber: '4321',
-    ContractNumber: 'Any Random Number',
-    ClientID: 1
-}];
-
-let disciplines: Discipline[] = [
-    { ID: 1, Name: 'Process' },
-    { ID: 2, Name: 'Piping' },
-    { ID: 3, Name: 'Instrumentation' },
-    { ID: 4, Name: 'Electrical' },
-    { ID: 5, Name: 'Structural' },
-    { ID: 6, Name: 'Pipelines' }
-  ];
-
-let packages: Package[] = [
-    { ID: 1, Name: 'Subsea Flange', Title: 'Subsea Flange' },
-    { ID: 2, Name: 'Cladding', Title: 'Cladding' },
-    { ID: 2, Name: 'Switchgear', Title: 'HV Switchgear' }
-  ]; 
 
 let refprojects: Project[] = [{
     ID: 1,
@@ -63,19 +22,29 @@ let refprojects: Project[] = [{
 
 @Injectable()
 export class Service {
-    getProjects() : Project[] {
-        return projects;
+    url: string;
+
+    constructor(private http:HttpClient) { 
+      this.url='http://10.1.170.167:3200/api';
     }
 
-    getDisciplines() : Discipline[] {
-        return disciplines;
+    getProjects()
+    {
+      return this.http.get(this.url + '/project/all');
     }
 
-    getPackages() : Package[] {
-        return packages;
+    getDisciplines()
+    {
+      return this.http.get(this.url + '/discipline/all');
     }
 
-    getRefProjects(packageId) : Project[] {
-        return refprojects;
+    getPackages()
+    {
+      return this.http.get(this.url + '/package/all');
+    }
+
+    getRefProjects(packageId)
+    {
+      return this.http.get(this.url + '/package/' + packageId + '/projects');
     }
 }
