@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
 import { Service } from './tbedashboard.service';
+import { DxDataGridModule } from 'devextreme-angular';
 
 @Component({
   selector: 'app-tbedashboard',
@@ -8,28 +10,25 @@ import { Service } from './tbedashboard.service';
   styleUrls: ['./tbedashboard.component.css'],
   providers: [Service]
 })
-export class TbedashboardComponent implements OnInit {
+export class TbedashboardComponent {
 
     dataSource: any;
 
-    constructor(public router: Router, service: Service) { 
-      service.getTBEsForProject(1).subscribe((res:any) => {
+    constructor(public router: Router, service: Service) {
+      service.getTBEsForProject(1).subscribe((res: any) => {
         console.log(res.payload.data);
         this.dataSource = res.payload.data;
       });
     }
 
-  ngOnInit() {
-  }
-
-  createNewTBE()
-  {
+  createNewTBE() {
     this.router.navigate(['/createnewtbe']);
   }
 
+
   viewEditClick(e) {
-    alert('here');
-    this.router.navigate(['/tbedetails' + e.row.data.id]);
+    e.event.preventDefault();
+    this.router.navigate(['/tbedetails/' + e.row.data.id]);
   }
 
 }

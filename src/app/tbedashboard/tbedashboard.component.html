@@ -37,9 +37,12 @@
             </dxi-column>
         <dxi-column dataField="tbeFinalDate" dataType="date"></dxi-column>
         <dxi-column dataField="status" dataType="date"></dxi-column>
-        <dxi-column type="buttons">
-            <dxi-button hint="View/Edit" text="View/Edit" [onClick]="viewEditClick"></dxi-button>
-        </dxi-column>        
+        <dxi-column type="buttons" [width]="110">
+            <dxi-button 
+                text="View/Edit"
+                [onClick]= "viewEditClick">
+            </dxi-button>
+        </dxi-column>    
 
     </dx-data-grid>
     <br>
