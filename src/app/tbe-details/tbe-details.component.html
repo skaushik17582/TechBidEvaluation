@@ -1,1 +1,25 @@
-<p>tbe-details works!</p>
+<dx-data-grid style="margin: 20px"
+        id="gridContainer"
+        [dataSource]="dataSource"
+        [remoteOperations]="false"
+        [allowColumnReordering]="true"
+        [rowAlternationEnabled]="true" 
+        [showBorders]="true">
+        <dxo-search-panel
+            [visible]="true"
+            [highlightCaseSensitive]="true"
+        ></dxo-search-panel>
+        <dxo-group-panel
+            [visible]="false"
+        ></dxo-group-panel>
+        <dxo-grouping
+            [autoExpandAll]="true"
+        ></dxo-grouping>
+
+        <dxi-column dataField="header" dataType="string" [groupIndex]="0"></dxi-column>
+        <dxi-column dataField="screening" dataType="string"></dxi-column>
+        <dxi-column dataField="criteria" dataType="string"></dxi-column>
+
+    
+        
+    </dx-data-grid>

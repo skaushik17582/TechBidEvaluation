@@ -1,13 +1,50 @@
 <div>
-    <dx-data-grid
+    <dx-data-grid style="margin: 20px"
         id="gridContainer"
-        [dataSource]="customers"
-        [columns]="['CompanyName', 'City', 'State', 'Phone', 'Fax']"
+        [dataSource]="dataSource"
+        [remoteOperations]="false"
+        [allowColumnReordering]="true"
+        [rowAlternationEnabled]="true"
         [showBorders]="true">
+        <dxo-search-panel
+            [visible]="true"
+            [highlightCaseSensitive]="true"
+        ></dxo-search-panel>
+        <dxo-group-panel
+            [visible]="true"
+        ></dxo-group-panel>
+        <dxo-grouping
+            [autoExpandAll]="false"
+        ></dxo-grouping>
+
+        <dxi-column dataField="package" dataType="string"></dxi-column>
+        <dxi-column dataField="offerReceived" dataType="date"></dxi-column>
+        <dxi-column caption="TQ1" alignment="center">
+            <dxi-column caption="Planned" dataField="tq1PlannedDate" dataType="date"></dxi-column>
+            <dxi-column caption="Actual" dataField="tq1ActualDate" dataType="date"></dxi-column>
+        </dxi-column>
+        <dxi-column caption="TQ1 Response" alignment="center"> 
+            <dxi-column caption="Planned" dataField="tq1ResponsePlannedDate" dataType="date"></dxi-column>
+            <dxi-column caption="Actual" dataField="tq1ResponseActualDate" dataType="date"></dxi-column>
+        </dxi-column>
+        <dxi-column caption="TQ2" alignment="center">
+                <dxi-column caption="Planned" dataField="tq2PlannedDate" dataType="date"></dxi-column>
+                <dxi-column caption="Actual" dataField="tq2ActualDate" dataType="date"></dxi-column>
+            </dxi-column>
+            <dxi-column caption="TQ2 Response" alignment="center">
+                <dxi-column caption="Planned" dataField="tq2ResponsePlannedDate" dataType="date"></dxi-column>
+                <dxi-column caption="Actual" dataField="tq2ResponseActualDate" dataType="date"></dxi-column>
+            </dxi-column>
+        <dxi-column dataField="tbeFinalDate" dataType="date"></dxi-column>
+        <dxi-column dataField="status" dataType="date"></dxi-column>
+        <dxi-column type="buttons">
+            <dxi-button hint="View/Edit" text="View/Edit" [onClick]="viewEditClick"></dxi-button>
+        </dxi-column>        
+
     </dx-data-grid>
     <br>
     <br>
-    <dx-button
+    <dx-button style="margin-left: 20px"
         stylingMode="outlined"
         text="Create New TBE"
         type="default"
