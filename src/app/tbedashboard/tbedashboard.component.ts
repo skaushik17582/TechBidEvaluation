@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Customer, Service } from './tbedashboard.service';
+import { Service } from './tbedashboard.service';
 
 @Component({
   selector: 'app-tbedashboard',
@@ -9,10 +9,14 @@ import { Customer, Service } from './tbedashboard.service';
   providers: [Service]
 })
 export class TbedashboardComponent implements OnInit {
-    customers: Customer[];
+
+    dataSource: any;
 
     constructor(public router: Router, service: Service) { 
-      this.customers =  service.getCustomers();
+      service.getTBEsForProject(1).subscribe((res:any) => {
+        console.log(res.payload.data);
+        this.dataSource = res.payload.data;
+      });
     }
 
   ngOnInit() {
@@ -21,6 +25,11 @@ export class TbedashboardComponent implements OnInit {
   createNewTBE()
   {
     this.router.navigate(['/createnewtbe']);
+  }
+
+  viewEditClick(e) {
+    alert('here');
+    this.router.navigate(['/tbedetails' + e.row.data.id]);
   }
 
 }

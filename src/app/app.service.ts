@@ -1,25 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-
-export class Project {
-    ID: number;
-    Number: string;
-    Title: string;
-    ClientProjectNumber: string;
-    ContractNumber: string;
-    ClientID: number;
-}
-
-let refprojects: Project[] = [{
-    ID: 1,
-    Number: '6071',
-    Title: 'QP BH Ph 1',
-    ClientProjectNumber: '4004',
-    ContractNumber: 'GC0031331',
-    ClientID: 1
-}];
-
 @Injectable()
 export class Service {
     url: string;

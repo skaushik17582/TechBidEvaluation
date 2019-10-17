@@ -3,7 +3,6 @@ import { DxSelectBoxComponent } from "devextreme-angular";
 import { Service } from '../app.service';
 import { Router } from '@angular/router';
 import CustomStore from "devextreme/data/custom_store";
-import { createStore } from "devextreme-aspnet-data-nojquery";
 
 @Component({
   selector: 'create-tbe',
