@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Service } from './tbe-details.service';
+import { Service ,RootObject, TBEDetails} from './tbe-details.service';
 
 
 @Component({
@@ -12,23 +12,19 @@ import { Service } from './tbe-details.service';
 export class TbeDetailsComponent implements OnInit {
 
   tbeId : any;
-  dataSource: any;
+  dataSource: TBEDetails[];
 
   constructor(private route: ActivatedRoute, service: Service) {
-      
+    //this.dataSource = service.getTestTBE();  
     this.route.url.subscribe(value => {
-      this.tbeId = value[value.length - 1];
-
-      service.getTQsForTBE(this.tbeId).subscribe((res:any) => {
-        console.log(res.payload.data);
-        this.dataSource = res.payload.data;     
+      this.tbeId = value[value.length - 1];      
+      service.getTestTBE().subscribe((res:RootObject) => {
+        console.log(res);
+        this.dataSource = res.payload.data;
       });
     });    
    }
 
   ngOnInit() {    
   }
-
-
-
 }

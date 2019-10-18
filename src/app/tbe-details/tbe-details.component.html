@@ -16,10 +16,10 @@
             [autoExpandAll]="true"
         ></dxo-grouping>
 
-        <dxi-column dataField="header" dataType="string" [groupIndex]="0"></dxi-column>
-        <dxi-column dataField="screening" dataType="string"></dxi-column>
-        <dxi-column dataField="criteria" dataType="string"></dxi-column>
+        <dxi-column dataField="header" [groupIndex]=0></dxi-column>
+        <dxi-column dataField="screening"></dxi-column>
+        <dxi-column dataField="criteria"></dxi-column>
 
-    
+        <dxi-column *ngFor="let item of [a,d]" dataField=item></dxi-column>
         
     </dx-data-grid>

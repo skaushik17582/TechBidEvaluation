@@ -13,9 +13,10 @@ export class TbedashboardComponent implements OnInit {
     dataSource: any;
 
     constructor(public router: Router, service: Service) { 
+      this.viewEditClick = this.viewEditClick.bind(this);  
       service.getTBEsForProject(1).subscribe((res:any) => {
         console.log(res.payload.data);
-        this.dataSource = res.payload.data;
+        this.dataSource = res.payload.data;        
       });
     }
 
@@ -28,8 +29,7 @@ export class TbedashboardComponent implements OnInit {
   }
 
   viewEditClick(e) {
-    alert('here');
-    this.router.navigate(['/tbedetails' + e.row.data.id]);
+    this.router.navigate(['/tbedetails/' + e.row.data.id]);
   }
 
 }
