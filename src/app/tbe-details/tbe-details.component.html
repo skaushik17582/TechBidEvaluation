@@ -4,11 +4,9 @@
         [remoteOperations]="false"
         [allowColumnReordering]="true"
         [rowAlternationEnabled]="true" 
-        [showBorders]="true">
-        <dxo-search-panel
-            [visible]="true"
-            [highlightCaseSensitive]="true"
-        ></dxo-search-panel>
+        [showBorders]="true"
+        >
+        
         <dxo-group-panel
             [visible]="false"
         ></dxo-group-panel>
@@ -16,10 +14,15 @@
             [autoExpandAll]="true"
         ></dxo-grouping>
 
-        <dxi-column dataField="header" [groupIndex]=0></dxi-column>
+        <dxi-column dataField="header" [groupIndex]="0"></dxi-column>
         <dxi-column dataField="screening"></dxi-column>
         <dxi-column dataField="criteria"></dxi-column>
-
-        <dxi-column *ngFor="let item of [a,d]" dataField=item></dxi-column>
         
+        <dxi-column caption="Bidders" dataField="bidders">
+            <div *ngFor="let a of [a,b]">
+                <dxi-column caption="Team"></dxi-column>
+            </div>
+        </dxi-column>
+
+
     </dx-data-grid>

@@ -5,13 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateNewTBEComponent } from './create-new-tbe/create-new-tbe.component';
 import { RefProjBiddersComponent } from './ref-proj-bidders/ref-proj-bidders.component';
-import { 
+import {
   DxButtonModule,
   DxCheckBoxModule,
   DxSelectBoxModule,
   DxNumberBoxModule,
-	DxTextAreaModule,
-	DxDateBoxModule,
+  DxTextAreaModule,
+  DxDateBoxModule,
   DxFormModule,
   DxDataGridModule,
   DxBulletModule,
@@ -36,8 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
     DxCheckBoxModule,
     DxSelectBoxModule,
     DxNumberBoxModule,
-		DxTextAreaModule,
-		DxDateBoxModule,
+    DxTextAreaModule,
+    DxDateBoxModule,
     DxFormModule,
     BrowserAnimationsModule,
     DxDataGridModule,
